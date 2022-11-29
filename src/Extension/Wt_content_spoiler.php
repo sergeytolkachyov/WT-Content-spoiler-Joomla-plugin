@@ -50,8 +50,6 @@ class Wt_content_spoiler extends CMSPlugin
 			{
 
 				$tagcontent = preg_replace("/{.+?}/", "", $match);
-				$tagcontent = str_replace(array('"', '\'', '`'), array('&quot;', '&apos;', '&#x60;'), $tagcontent); // Address potential XSS attacks
-
 				$path = PluginHelper::getLayoutPath('content', 'wt_content_spoiler');
 				ob_start();
 				include $path;
@@ -71,8 +69,6 @@ class Wt_content_spoiler extends CMSPlugin
 							element.addEventListener('click',function (event){
 								let spoiler_id = element.getAttribute('data-wt-content-spoiler-toggler');
 								let spoiler_container = document.querySelector('#wt-content-spoiler-'+ spoiler_id + ' .wt-content-spoiler-inner');
-								console.log(spoiler_id);
-								console.log(spoiler_container);
 								if(spoiler_container.classList.contains('open')){
 									spoiler_container.classList.remove('open');
 									element.innerHTML = wt_content_spoiler_options.show;
