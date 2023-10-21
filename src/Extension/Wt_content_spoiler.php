@@ -1,11 +1,11 @@
 <?php
 /**
- * @package     WT Content spoiler
- * @version     1.0.0
- * @Author      Sergey Tolkachyov, https://web-tolk.ru
- * @copyright   Copyright (C) 2022 Sergey Tolkachyov
- * @license     GNU/GPL http://www.gnu.org/licenses/gpl-2.0.html
- * @since       1.0.0
+ * @package       WT Content spoiler
+ * @version       1.0.1
+ * @Author        Sergey Tolkachyov, https://web-tolk.ru
+ * @сopyright (c) 2022 - October 2023 Sergey Tolkachyov. All rights reserved.
+ * @license       GNU/GPL3 http://www.gnu.org/licenses/gpl-3.0.html
+ * @since         1.0.0
  */
 
 // No direct access
@@ -13,6 +13,7 @@ namespace Joomla\Plugin\Content\Wt_content_spoiler\Extension;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Layout\FileLayout;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Plugin\PluginHelper;
 
@@ -48,13 +49,14 @@ class Wt_content_spoiler extends CMSPlugin
 			// start the replace loop
 			foreach ($matches[0] as $key => $match)
 			{
-
 				$tagcontent = preg_replace("/{.+?}/", "", $match);
-				$path = PluginHelper::getLayoutPath('content', 'wt_content_spoiler');
-				ob_start();
-				include $path;
-				ob_get_contents();
-				$html          = ob_get_clean();
+				$layout      = new FileLayout('default', JPATH_SITE . DIRECTORY_SEPARATOR . 'plugins' . DIRECTORY_SEPARATOR . 'content' . DIRECTORY_SEPARATOR . 'wt_content_spoiler' . DIRECTORY_SEPARATOR . 'tmpl');
+				$displayData = [
+					'iterator' => $iterator,
+					'tagcontent' => $tagcontent,
+					'params' => $this->params
+				];
+				$html          = $layout->render($displayData);;
 				$article->text = str_replace($match, $html, $article->text);
 				$iterator++;
 			}
@@ -65,6 +67,7 @@ class Wt_content_spoiler extends CMSPlugin
 					document.addEventListener('DOMContentLoaded', function (){
 						let wt_content_spoiler_options = Joomla.getOptions('wt_content_spoiler_options');
 						let all_spoilers = document.querySelectorAll('[data-wt-content-spoiler-toggler]');
+					
 						all_spoilers.forEach(function (element,i,array){
 							element.addEventListener('click',function (event){
 								let spoiler_id = element.getAttribute('data-wt-content-spoiler-toggler');

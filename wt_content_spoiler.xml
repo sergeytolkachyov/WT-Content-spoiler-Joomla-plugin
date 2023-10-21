@@ -7,7 +7,7 @@
 	<license>GNU General Public License version 3</license>
 	<authorEmail>info@web-tolk.ru</authorEmail>
 	<authorUrl>https://web-tolk.ru</authorUrl>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<description>PLG_WT_CONTENT_SPOILER_DESC</description>
 	<namespace path="src">Joomla\Plugin\Content\Wt_content_spoiler</namespace>
 	<scriptfile>script.php</scriptfile>
@@ -60,6 +60,7 @@
 		</fields>
 	</config>
 	<updateservers>
-        <server type="extension" name="Web Tolk - WT Content spoiler" priority="1">https://web-tolk.ru/component/swjprojects/jupdate.html?element=wt_content_spoiler</server>
+        <server type="extension" name="WebTolk - WT Content spoiler" priority="1">https://web-tolk.ru/component/swjprojects/jupdate.html?element=wt_content_spoiler</server>
     </updateservers>
+	<changelogurl>https://web-tolk.ru/jchangelog?element=wt_content_spoiler</changelogurl>
 </extension>
