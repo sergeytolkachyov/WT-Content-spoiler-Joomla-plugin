@@ -18,7 +18,7 @@ use Joomla\DI\ServiceProviderInterface;
 use Joomla\Event\DispatcherInterface;
 use Joomla\Plugin\Content\Wt_content_spoiler\Extension\Wt_content_spoiler;
 
-return new class implements ServiceProviderInterface {
+return new class () implements ServiceProviderInterface {
 	/**
 	 * Registers the service provider with a DI container.
 	 *
