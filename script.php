@@ -158,7 +158,7 @@ return new class () implements ServiceProviderInterface {
 					$smile     = $smiles[$smile_key];
 				}
 
-				$element = strtoupper($adapter->getElement());
+				$element = 'PLG_'.strtoupper($adapter->getElement());
 				$type = strtoupper($type);
 				$html = '
 				<div class="row bg-white m-0">
